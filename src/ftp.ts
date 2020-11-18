@@ -3,7 +3,7 @@ export class FTP {
     private ftp: any; 
     private path: string;
     private jsonData: any;
-    
+
     constructor() {
         this.ftp = require("basic-ftp");
         this.path = __dirname.split("\\").slice(0, __dirname.split("\\").length-1).join("/");
@@ -31,7 +31,7 @@ export class FTP {
                 this.jsonData.connection
             );
             console.log(await client.list());
-            await client.uploadFrom(`${this.path}/uploadFolder/${this.jsonData.fileToUpload.name}`, `Nomina${this.getDate()}.txt`);
+            await client.uploadFrom(`${this.path}/uploadFolder/${this.jsonData.fileToUpload.nameLocal}`, `${this.jsonData.fileToUpload.nameRemote}${this.getDate()}.txt`);
         }
         catch(err) {
             console.log(err)

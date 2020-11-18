@@ -73,7 +73,7 @@ var FTP = /** @class */ (function () {
                         return [4 /*yield*/, client.list()];
                     case 3:
                         _b.apply(_a, [_c.sent()]);
-                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/" + this.jsonData.fileToUpload.name, "Nomina" + this.getDate() + ".txt")];
+                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/" + this.jsonData.fileToUpload.nameLocal, "" + this.jsonData.fileToUpload.nameRemote + this.getDate() + ".txt")];
                     case 4:
                         _c.sent();
                         return [3 /*break*/, 6];

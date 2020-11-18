@@ -7,6 +7,7 @@
         "secure": false
     },
     "fileToUpload": {
-        "name": "archivo.txt"
+        "nameLocal": "archivo.txt",
+        "nameRemote": "Nomina"
     }
 }
