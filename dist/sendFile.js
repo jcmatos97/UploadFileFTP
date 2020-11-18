@@ -40,6 +40,7 @@ exports.SendFile = void 0;
 var SendFile = /** @class */ (function () {
     function SendFile() {
         this.ftp = require("basic-ftp");
+        this.path = __dirname.split("\\").slice(0, __dirname.split("\\").length - 1).join("/");
         console.log("Proceso de Subida iniciado...");
         this.uploadFile();
     }
@@ -66,7 +67,7 @@ var SendFile = /** @class */ (function () {
                                 host: "10.0.0.13",
                                 port: "21",
                                 user: "jcmaster",
-                                password: "123456",
+                                password: "12345",
                                 secure: false
                             })];
                     case 2:
@@ -75,8 +76,10 @@ var SendFile = /** @class */ (function () {
                         return [4 /*yield*/, client.list()];
                     case 3:
                         _b.apply(_a, [_c.sent()]);
-                        return [4 /*yield*/, client.uploadFrom("C:/Users/JC97/Desktop/UNAPEC/Cuatrimestre VII/Integracion Open Source/UploadFileFTP/UploadFolder/archivo.txt", "/")];
+                        //console.log(this.path+"/uploadFolder/archivo.txt");
+                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/archivo.txt", "archivo1.txt")];
                     case 4:
+                        //console.log(this.path+"/uploadFolder/archivo.txt");
                         _c.sent();
                         return [3 /*break*/, 6];
                     case 5:

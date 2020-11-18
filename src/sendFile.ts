@@ -26,14 +26,12 @@ export class SendFile {
                 host: "10.0.0.13",
                 port: "21",
                 user: "jcmaster",
-                password: "123456",
+                password: "12345",
                 secure: false
             })
             console.log(await client.list());
             //console.log(this.path+"/uploadFolder/archivo.txt");
-            //await client.uploadFrom(this.path+"/uploadFolder/archivo.txt", "/");
-            await client.uploadFrom("C:/Users/JC97/Desktop/UNAPEC/Cuatrimestre VII/Integracion Open Source/UploadFileFTP/uploadFolder/archivo.txt", "/");
-
+            await client.uploadFrom(this.path+"/uploadFolder/archivo.txt", "archivo1.txt");
         }
         catch(err) {
             console.log(err)
