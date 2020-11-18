@@ -1,4 +1,4 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var sendFile_1 = require("./sendFile");
-(new sendFile_1.SendFile());
+var ftp_1 = require("./ftp");
+(new ftp_1.FTP()).uploadFile();

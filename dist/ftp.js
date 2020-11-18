@@ -36,30 +36,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SendFile = void 0;
-var SendFile = /** @class */ (function () {
-    function SendFile() {
+exports.FTP = void 0;
+var FTP = /** @class */ (function () {
+    function FTP() {
         this.ftp = require("basic-ftp");
         this.path = __dirname.split("\\").slice(0, __dirname.split("\\").length - 1).join("/");
         this.jsonData = require(this.path + "/ftpconfig.json");
-        console.log("Proceso de Subida iniciado...");
-        //console.log(this.jsonData.connection);
-        this.uploadFile();
     }
     /**
      * downloadFile
      */
-    SendFile.prototype.downloadFile = function () {
+    FTP.prototype.downloadFile = function () {
+        console.log("Proceso de Descarga iniciado...");
+        //console.log(this.jsonData.connection);
+        console.log("...Proceso de Descarga Finalizado");
     };
     /**
      * uploadFile
      */
-    SendFile.prototype.uploadFile = function () {
+    FTP.prototype.uploadFile = function () {
         return __awaiter(this, void 0, void 0, function () {
             var client, _a, _b, err_1;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
+                        console.log("Proceso de Subida iniciado...");
                         client = new this.ftp.Client();
                         client.ftp.verbose = true;
                         _c.label = 1;
@@ -72,7 +73,7 @@ var SendFile = /** @class */ (function () {
                         return [4 /*yield*/, client.list()];
                     case 3:
                         _b.apply(_a, [_c.sent()]);
-                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/archivo.txt", "Nomina" + this.getDate() + ".txt")];
+                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/" + this.jsonData.fileToUpload.name, "Nomina" + this.getDate() + ".txt")];
                     case 4:
                         _c.sent();
                         return [3 /*break*/, 6];
@@ -82,12 +83,16 @@ var SendFile = /** @class */ (function () {
                         return [3 /*break*/, 6];
                     case 6:
                         client.close();
+                        console.log("...Proceso de Subida Finalizado");
                         return [2 /*return*/];
                 }
             });
         });
     };
-    SendFile.prototype.getDate = function () {
+    /**
+     * getting date in DDMMYYYY format
+     */
+    FTP.prototype.getDate = function () {
         var date = new Date();
         var day = date.getDate();
         var month = date.getMonth() + 1;
@@ -99,6 +104,6 @@ var SendFile = /** @class */ (function () {
             return ("" + day + month + year);
         }
     };
-    return SendFile;
+    return FTP;
 }());
-exports.SendFile = SendFile;
+exports.FTP = FTP;

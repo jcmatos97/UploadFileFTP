@@ -1,3 +1,3 @@
-import { SendFile } from "./sendFile";
+import { FTP } from "./ftp";
 
-(new SendFile());
+(new FTP()).uploadFile();
