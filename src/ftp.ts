@@ -3,11 +3,14 @@ export class FTP {
     private ftp: any; 
     private path: string;
     private jsonData: any;
+    private extensionFile: string;
 
     constructor() {
         this.ftp = require("basic-ftp");
         this.path = __dirname.split("\\").slice(0, __dirname.split("\\").length-1).join("/");
         this.jsonData = require(`${this.path}/ftpconfig.json`);
+        this.extensionFile = this.jsonData.fileToUpload.nameLocal.split(".")[(this.jsonData.fileToUpload.nameLocal.split(".")).length - 1];
+        console.log(this.extensionFile);
     }
 
     /**
@@ -31,7 +34,7 @@ export class FTP {
                 this.jsonData.connection
             );
             console.log(await client.list());
-            await client.uploadFrom(`${this.path}/uploadFolder/${this.jsonData.fileToUpload.nameLocal}`, `${this.jsonData.fileToUpload.nameRemote}${this.getDate()}.txt`);
+            await client.uploadFrom(`${this.path}/uploadFolder/${this.jsonData.fileToUpload.nameLocal}`, `${this.jsonData.fileToUpload.nameRemote}${this.getDate()}.${this.extensionFile}`);
         }
         catch(err) {
             console.log(err)

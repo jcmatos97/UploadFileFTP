@@ -42,6 +42,8 @@ var FTP = /** @class */ (function () {
         this.ftp = require("basic-ftp");
         this.path = __dirname.split("\\").slice(0, __dirname.split("\\").length - 1).join("/");
         this.jsonData = require(this.path + "/ftpconfig.json");
+        this.extensionFile = this.jsonData.fileToUpload.nameLocal.split(".")[(this.jsonData.fileToUpload.nameLocal.split(".")).length - 1];
+        console.log(this.extensionFile);
     }
     /**
      * downloadFile
@@ -73,7 +75,7 @@ var FTP = /** @class */ (function () {
                         return [4 /*yield*/, client.list()];
                     case 3:
                         _b.apply(_a, [_c.sent()]);
-                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/" + this.jsonData.fileToUpload.nameLocal, "" + this.jsonData.fileToUpload.nameRemote + this.getDate() + ".txt")];
+                        return [4 /*yield*/, client.uploadFrom(this.path + "/uploadFolder/" + this.jsonData.fileToUpload.nameLocal, "" + this.jsonData.fileToUpload.nameRemote + this.getDate() + "." + this.extensionFile)];
                     case 4:
                         _c.sent();
                         return [3 /*break*/, 6];
